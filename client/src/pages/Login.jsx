@@ -56,7 +56,7 @@ export default function Login() {
         {/* Main background */}
         <div className="flex items-center justify-center min-h-screen bg-background">
             {/* Login form */}
-            <div className="bg-card shadow-lg rounded-lg p-8 w-full max-w-sm flex flex-col items-center justify-center">
+            <form onSubmit={handleSubmit} className="bg-card shadow-lg rounded-lg p-8 w-full max-w-sm flex flex-col items-center justify-center">
                 {/* Welcome text */}
                 <h1 className="text-sectionTitle font-bold text-primary mb-6">Welcome to Ecademy</h1>
                 {/* e-mail input */}
@@ -98,7 +98,7 @@ export default function Login() {
                     </label>
                 </div>
                 {/* Login button */}
-                <button className="bg-primary text-white py-2 px-4 rounded shadow hover:bg-secondary transition duration-300 w-full mt-6" onClick={handleSubmit}>
+                <button className="bg-primary text-white py-2 px-4 rounded shadow hover:bg-secondary transition duration-300 w-full mt-6" type="submit">
                     Login
                 </button>
                 {/* Forgot password link */}
@@ -107,7 +107,7 @@ export default function Login() {
                         Forgot Password?
                     </a>
                 </div>
-            </div>
+            </form>
         </div>
         </> 
     )

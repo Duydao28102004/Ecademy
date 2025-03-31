@@ -1,6 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 
 const AuthContext = createContext();
 
@@ -8,7 +7,6 @@ export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
     const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
-    const navigate = useNavigate();
 
     // Check authentication status 
     const checkAuth = async () => {
@@ -46,14 +44,12 @@ export const AuthProvider = ({ children }) => {
         try {
             sessionStorage.removeItem("token");
             document.cookie = "jwt=; path=/; domain=localhost; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
-            console.log("Logging in with:", formData);
             const res = await axios.post(`${BACKEND_URL}/users/login`, formData, { withCredentials: true });
             if (!formData.rememberMe) {
                 sessionStorage.setItem("token", res.data.token);
             }
-            console.log("User Logged In:", res.data);
             setUser(res.data.user);
-            setTimeout(() => navigate("/"), 100);
+            window.location.href = "/";
         } catch (err) {
             throw new Error(err.response?.data?.message || "Login failed!");
         }
@@ -62,9 +58,8 @@ export const AuthProvider = ({ children }) => {
     // Register function
     const register = async (formData) => {
         try {
-            const res = await axios.post(`${BACKEND_URL}/users/register`, formData);
-            console.log("User Registered:", res.data);
-            setTimeout(() => navigate("/login"), 100);
+            await axios.post(`${BACKEND_URL}/users/register`, formData);
+            window.location.href = "/register";
         } catch (err) {
             throw new Error(err.response?.data?.message || "Registration failed");
         }
