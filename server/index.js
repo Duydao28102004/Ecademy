@@ -3,6 +3,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import connectDB from './config/db.js';
 import authRoutes from './routes/authRoutes.js';
+import questionSetRoutes from './routes/questionSetRoutes.js';
 import cookieParser from "cookie-parser";
 
 
@@ -29,5 +30,6 @@ app.get("/", (req, res) => {
     res.send("🛒 ShopSphere API is running!");
 });
 app.use("/api/users", authRoutes);
+app.use("/api/question-sets", questionSetRoutes);
 
 app.listen(PORT, () => console.log(`✅ Server running on port ${PORT}`));

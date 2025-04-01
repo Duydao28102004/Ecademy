@@ -59,7 +59,7 @@ export const AuthProvider = ({ children }) => {
     const register = async (formData) => {
         try {
             await axios.post(`${BACKEND_URL}/users/register`, formData);
-            window.location.href = "/register";
+            window.location.href = "/login";
         } catch (err) {
             throw new Error(err.response?.data?.message || "Registration failed");
         }
