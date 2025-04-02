@@ -6,6 +6,7 @@ import Home from "./pages/Home";
 import TeacherDashboard from "./pages/TeacherDashboard";
 import QuestionSet from "./pages/QuestionSet";
 import "./App.css";
+import QuestionSetDetail from "./pages/QuestionSetDetail";
 
 export default function App() {
     return (
@@ -15,6 +16,7 @@ export default function App() {
             <Route path="/" element={<ProtectedRoutes><Home /></ProtectedRoutes>} />
             <Route path="/teacher-dashboard" element={<ProtectedRoutes><TeacherDashboard /></ProtectedRoutes>} />
             <Route path="/teacher-dashboard/question-set" element={<ProtectedRoutes><QuestionSet /></ProtectedRoutes>} />
+            <Route path="/teacher-dashboard/question-set/:id" element={<ProtectedRoutes><QuestionSetDetail/></ProtectedRoutes>} />
             <Route path="*" element={<div className="flex justify-center items-center h-screen">404 Not Found</div>} />
         </Routes>
     );
